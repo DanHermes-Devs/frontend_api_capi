@@ -5,10 +5,6 @@ import { ContactService } from '../../core/services/contact.service';
 import { Observable, Subject } from 'rxjs';
 import { PaginatedContacts } from '../../interfaces/PaginatedContacts';
 import { debounceTime } from 'rxjs/operators';
-import { Contact } from '../../interfaces/contact';
-import { Address } from '../../interfaces/address';
-import { Email } from '../../interfaces/email';
-import { Phone } from '../../interfaces/phone';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -23,12 +19,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContactListComponent {
   public contactResults$!: Observable<PaginatedContacts>;
+  public searchTerm: string = '';
   isLoading: boolean = false;
 
   constructor(
     private service: ContactService,
     private router: Router,
-    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -42,13 +38,6 @@ export class ContactListComponent {
       this.isLoading = true;
       this.contactResults$ = this.service.getContactBySearch(term);
       this.isLoading = false;
-    }
-  }
-
-  onInputChange(event: Event): void {
-    const inputElement = event.target as HTMLInputElement | null;
-    if (inputElement) {
-      this.search(inputElement.value);
     }
   }
 
