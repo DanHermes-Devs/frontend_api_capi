@@ -23,7 +23,7 @@ export class ContactService {
   }
 
   getContactBySearch(search: string): Observable<PaginatedContacts> {
-    return this.http.get<PaginatedContacts>(this.apiurl + "/contact/filter?term=" + search + "&per_page=10");
+    return this.http.get<PaginatedContacts>(`${this.apiurl}/contacts/filter?term=${search}&per_page=10`);
   }
 
   createContact(contact: Contact): Observable<Contact> {
