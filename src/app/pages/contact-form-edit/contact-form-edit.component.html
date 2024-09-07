@@ -1,0 +1,87 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <form (ngSubmit)="saveContact()">
+        <div class="mb-3">
+          <label for="name">Name</label>
+          <input class="form-control" id="name" [(ngModel)]="contact.name" name="name" type="text" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="notes">Notes</label>
+          <textarea class="form-control" id="notes" [(ngModel)]="contact.notes" name="notes"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="birthday">Birthday</label>
+          <input class="form-control" id="birthday" [(ngModel)]="contact.birthday" name="birthday" type="date" />
+        </div>
+
+        <div class="mb-3">
+          <label for="website">Website</label>
+          <input class="form-control" id="website" [(ngModel)]="contact.website" name="website" type="text" />
+        </div>
+
+        <div class="mb-3">
+          <label for="company">Company</label>
+          <input class="form-control" id="company" [(ngModel)]="contact.company" name="company" type="text" />
+        </div>
+
+        <!-- Campo de email con botón para agregar -->
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <div class="d-flex">
+            <input class="form-control" [(ngModel)]="newEmail" name="newEmail" placeholder="Enter email" />
+            <button type="button" class="btn btn-primary ms-2" (click)="addEmail()">Add Email</button>
+          </div>
+        </div>
+
+        <!-- Mostrar la lista de emails agregados -->
+        <ul class="mb-3 list-group">
+          <li class="list-group-item" *ngFor="let email of contact.emails; let i = index">
+            {{ email.email }}
+            <button type="button" class="btn btn-danger btn-sm float-end" (click)="removeEmailContact(email.id)">Remove</button>
+          </li>
+        </ul>
+
+        <!-- Campo de phone con botón para agregar -->
+        <div class="mb-3">
+          <label for="phone">Phone</label>
+          <div class="d-flex">
+            <input class="form-control" [(ngModel)]="newPhone" name="newPhone" placeholder="Enter phone" />
+            <button type="button" class="btn btn-primary ms-2" (click)="addPhone()">Add Phone</button>
+          </div>
+        </div>
+
+        <!-- Mostrar la lista de teléfonos agregados -->
+        <ul class="mb-3 list-group">
+          <li class="list-group-item" *ngFor="let phone of contact.phones; let i = index">
+            {{ phone.phone_number }}
+            <button type="button" class="btn btn-danger btn-sm float-end" (click)="removePhoneContact(phone.id)">Remove</button>
+          </li>
+        </ul>
+
+        <!-- Campo de address con botón para agregar -->
+        <div class="mb-3">
+          <label for="address">Address</label>
+          <div class="d-flex">
+            <input class="form-control" [(ngModel)]="newAddress" name="newAddress" placeholder="Enter address" />
+            <input class="form-control ms-2" [(ngModel)]="newCity" name="newCity" placeholder="Enter city" />
+            <input class="form-control ms-2" [(ngModel)]="newPostalCode" name="newPostalCode" placeholder="Enter postal code" />
+            <button type="button" class="btn btn-primary ms-2" (click)="addAddress()">Add Address</button>
+          </div>
+        </div>
+
+        <!-- Mostrar la lista de direcciones agregadas -->
+        <ul class="mb-3 list-group">
+          <li class="list-group-item" *ngFor="let address of contact.addresses; let i = index">
+            {{ address.address_line }}, {{ address.city }}, {{ address.postal_code }}
+            <button type="button" class="btn btn-danger btn-sm float-end" (click)="removeAddressContact(address.id)">Remove</button>
+          </li>
+        </ul>
+
+        <button type="submit" class="btn btn-success">Save Contact</button>
+      </form>
+    </div>
+  </div>
+</div>

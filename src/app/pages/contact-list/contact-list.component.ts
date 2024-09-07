@@ -9,6 +9,7 @@ import { Contact } from '../../interfaces/contact';
 import { Address } from '../../interfaces/address';
 import { Email } from '../../interfaces/email';
 import { Phone } from '../../interfaces/phone';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',
@@ -24,7 +25,11 @@ export class ContactListComponent {
   public contactResults$!: Observable<PaginatedContacts>;
   isLoading: boolean = false;
 
-  constructor(private service: ContactService) {}
+  constructor(
+    private service: ContactService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.contactResults$ = this.service.getContactList();
@@ -57,5 +62,13 @@ export class ContactListComponent {
         this.contactResults$ = this.service.getContactList();
       });
     }
+  }
+
+  editContact(id: number): void {
+    this.router.navigate(['/contacts/edit', id]);
+  }
+
+  createContact(): void {
+    this.router.navigate(['/contacts/create']);
   }
 }
