@@ -1,8 +1,9 @@
 export interface Contact {
-  first_name: string,
-  last_name: string,
-  city: string,
-  country: string,
-  created_at?: string,
-  updated_at?: string,
+  name: string,
+  notes: string,
+  birthday: string,
+  website: string,
+  company: string,
+  created_at: string,
+  updated_at: string,
 }

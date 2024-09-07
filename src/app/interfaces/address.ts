@@ -1,8 +1,8 @@
 export interface Address {
-  first_name: string,
-  last_name: string,
+  contact_id: number,
+  address_line: string,
   city: string,
-  country: string,
-  created_at?: string,
-  updated_at?: string,
+  postal_code: string,
+  created_at: string,
+  updated_at: string,
 }
