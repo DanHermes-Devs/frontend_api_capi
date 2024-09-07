@@ -27,9 +27,13 @@
               }
             ],
             "styles": [
+              "remixicon/fonts/remixicon.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -92,5 +96,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "8d177f92-03b4-47ad-8a4d-82acea7e57b6"
   }
 }
