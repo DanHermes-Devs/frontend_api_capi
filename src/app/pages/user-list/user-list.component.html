@@ -1,9 +1,0 @@
-@if (userResults$ | async; as resultObject) {
-  <ul>
-    @for (item of resultObject.data; track item.first_name) {
-      <li>
-        <app-user-item [userInfo]="item"/>
-      </li>
-    }
-  </ul>
-}
