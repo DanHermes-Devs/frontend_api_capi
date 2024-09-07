@@ -36,7 +36,7 @@ export class ContactService {
   }
 
   deleteContact(id: number): Observable<Contact> {
-    return this.http.delete<Contact>(this.apiurl + "/contact/" + id);
+    return this.http.delete<Contact>(this.apiurl + "/contacts/" + id);
   }
 
   getContactsByUrl(url: string): Observable<PaginatedContacts> {

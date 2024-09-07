@@ -165,13 +165,12 @@ export class ContactFormComponent implements OnInit {
     if (this.contact.id) {
       // Actualizar contacto existente
       this.contactService.updateContact(contactPayload).subscribe(() => {
-        // this.router.navigate(['/contacts']);
+        this.router.navigate(['/contacts']);
       });
     } else {
       // Crear nuevo contacto
       this.contactService.createContact(contactPayload).subscribe(() => {
-        // this.router.navigate(['/contacts']);
-        // console.log(contactPayload)
+        this.router.navigate(['/contacts']);
       });
     }
   }

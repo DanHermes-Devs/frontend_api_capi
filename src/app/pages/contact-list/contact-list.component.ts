@@ -50,4 +50,12 @@ export class ContactListComponent {
   loadPage(url: string): void {
     this.contactResults$ = this.service.getContactsByUrl(url);
   }
+
+  deleteContact(id: number): void {
+    if (confirm('Are you sure you want to delete this contact?')) {
+      this.service.deleteContact(id).subscribe(() => {
+        this.contactResults$ = this.service.getContactList();
+      });
+    }
+  }
 }

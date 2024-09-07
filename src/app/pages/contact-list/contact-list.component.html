@@ -24,22 +24,35 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Cumpleaños</th>
           <th>Sitio Web</th>
           <th>Compañía</th>
           <th>Fecha de Creación</th>
           <th>Fecha de Actualización</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of resultObject.data">
+          <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.birthday }}</td>
           <td>{{ item.website }}</td>
           <td>{{ item.company }}</td>
           <td>{{ item.created_at }}</td>
           <td>{{ item.updated_at }}</td>
+          <td>
+            <div class="d-flex">
+              <button class="btn btn-warning me-2">
+                Editar
+              </button>
+              <button class="btn btn-danger" (click)="deleteContact(item.id)">
+                Eliminar
+              </button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
