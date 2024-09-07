@@ -1,4 +1,5 @@
 export interface Address {
+  id: number,
   contact_id: number,
   address_line: string,
   city: string,
