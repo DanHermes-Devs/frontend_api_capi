@@ -27,6 +27,7 @@ export class ContactService {
   }
 
   createContact(contact: Contact): Observable<Contact> {
+    console.log(contact);
     return this.http.post<Contact>(this.apiurl + "/contacts", contact);
   }
 
