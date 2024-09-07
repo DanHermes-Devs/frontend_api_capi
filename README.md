@@ -1,27 +1,13 @@
-# FrontendApiCapi
+# Instalación del proyecto Frontend-Angular 18
+Para poder usar el proyecto, se tiene como requisito tener instalado lo siguiente:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+    NodeJS 20.11.1
+    Angular CLI: 18.2.3
 
-## Development server
+Una vez que se haya verificado que se tiene instalado lo anterior, será necesario descargar el repositorio o clonarlo.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Posterior a ello, para usar el proyecto se requiere que primero se ejecute el comando `composer install` esto instalará los paquetes necesarios para poder arrancar el proyecto.
 
-## Code scaffolding
+Posterior a ello, se debe crear una base de datos con el nombre de tu preferencia y en el archivo `.env` se deberan colocar las credenciales para acceder a la base de datos y adiconal colocar el nombre de la base de datos.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Una vez realizado esto, se deberá ejecutar el comando `php artisan migrate:fresh --seed` para instalar las migraciones dentro de tu base de datos y adicional, crear los registros de prueba (son 5000 registros de prueba)
