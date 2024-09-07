@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';  // Asegúrate de que FormsModule esté importado
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ContactService } from '../../core/services/contact.service';
 import { Contact } from '../../interfaces/contact';
