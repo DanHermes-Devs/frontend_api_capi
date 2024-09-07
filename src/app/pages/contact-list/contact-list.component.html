@@ -1,0 +1,35 @@
+<div class="container" *ngIf="contactResults$ | async as resultObject">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Cumpleaños</th>
+          <th>Sitio Web</th>
+          <th>Compañía</th>
+          <th>Fecha de Creación</th>
+          <th>Fecha de Actualización</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of resultObject.data; index as i">
+          <td>{{ item.name }}</td>
+          <td>{{ item.birthday }}</td>
+          <td>{{ item.website }}</td>
+          <td>{{ item.company }}</td>
+          <td>{{ item.created_at }}</td>
+          <td>{{ item.updated_at }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <button class="btn btn-warning" [disabled]="!resultObject.prev_page_url" (click)="resultObject.prev_page_url ? loadPage(resultObject.prev_page_url) : null">
+      Anterior
+    </button>
+    <button class="btn btn-success" [disabled]="!resultObject.next_page_url" (click)="resultObject.next_page_url ? loadPage(resultObject.next_page_url) : null">
+      Siguiente
+    </button>
+  </div>
+</div>
