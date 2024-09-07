@@ -58,22 +58,6 @@ export class ContactFormEditComponent {
     });
   }
 
-  // Métodos para agregar y eliminar emails
-  addEmail(): void {
-    if (this.newEmail && this.validateEmail(this.newEmail)) {
-      this.contact.emails.push({
-        email: this.newEmail,
-        id: 0,  // Valor predeterminado para id
-        contact_id: this.contact.id || 0,  // Valor predeterminado para contact_id
-        created_at: '',  // Valor predeterminado para created_at
-        updated_at: ''   // Valor predeterminado para updated_at
-      });
-      this.newEmail = '';  // Limpiar campo
-    } else {
-      alert('Please enter a valid email.');
-    }
-  }
-
   removeEmailContact(id: number): void {
     this.emailService.deleteEmailContact(id).subscribe(() => {
       this.contact.emails = this.contact.emails.filter(email => email.id !== id);
@@ -92,17 +76,43 @@ export class ContactFormEditComponent {
     });
   }
 
+  // Métodos para agregar y eliminar emails
+  addEmail(): void {
+    if (this.newEmail && this.validateEmail(this.newEmail)) {
+      let data = {
+        email: this.newEmail,
+        id: 0,
+        contact_id: this.contact.id || 0,
+        created_at: '',
+        updated_at: ''
+      };
+
+      this.emailService.createEmailContact(data).subscribe(email => {
+        this.loadContactData(this.contact.id);
+      })
+
+      this.newEmail = '';
+    } else {
+      alert('Please enter a valid email.');
+    }
+  }
+
   // Métodos para agregar y eliminar teléfonos
   addPhone(): void {
     if (this.newPhone) {
-      this.contact.phones.push({
-        phone_number: this.newPhone,  // Usar el nombre correcto de la propiedad
-        id: 0,  // Valor predeterminado para id
-        contact_id: this.contact.id || 0,  // Valor predeterminado para contact_id
-        created_at: '',  // Valor predeterminado para created_at
-        updated_at: ''   // Valor predeterminado para updated_at
+      let data = {
+        phone_number: this.newPhone,
+        id: 0,
+        contact_id: this.contact.id || 0,
+        created_at: '',
+        updated_at: ''
+      };
+
+      this.phoneService.createPhoneContact(data).subscribe(phone => {
+        this.loadContactData(this.contact.id);
       });
-      this.newPhone = '';  // Limpiar campo
+
+      this.newPhone = '';
     } else {
       alert('Please enter a valid phone number.');
     }
@@ -111,25 +121,26 @@ export class ContactFormEditComponent {
   // Métodos para agregar y eliminar direcciones
   addAddress(): void {
     if (this.newAddress && this.newCity && this.newPostalCode) {
-      this.contact.addresses.push({
+      let data = {
         address_line: this.newAddress,
         city: this.newCity,
         postal_code: this.newPostalCode,
-        id: 0,  // Valor predeterminado para id
-        contact_id: this.contact.id || 0,  // Valor predeterminado para contact_id
-        created_at: '',  // Valor predeterminado para created_at
-        updated_at: ''   // Valor predeterminado para updated_at
+        id: 0,
+        contact_id: this.contact.id || 0,
+        created_at: '',
+        updated_at: ''
+      };
+
+      this.addressService.createAddressContact(data).subscribe(address => {
+        this.loadContactData(this.contact.id);
       });
+
       this.newAddress = '';  // Limpiar campo
       this.newCity = '';     // Limpiar campo
       this.newPostalCode = '';  // Limpiar campo
     } else {
       alert('Please enter a valid address, city, and postal code.');
     }
-  }
-
-  removeAddress(index: number): void {
-    this.contact.addresses.splice(index, 1);
   }
 
   // Validación del email
