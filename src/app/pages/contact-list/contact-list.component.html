@@ -1,4 +1,25 @@
-<div class="container" *ngIf="contactResults$ | async as resultObject">
+<div class="container mt-5" *ngIf="contactResults$ | async as resultObject">
+
+  <div class="d-flex justify-content-between">
+    <div class="mb-3">
+      <input type="text" class="form-control" (input)="onInputChange($event)" placeholder="Buscar contacto...">
+    </div>
+
+    <div class="gap-1 d-flex">
+      <div class="mb-3">
+        <button class="btn btn-primary" (click)="loadPage(resultObject.first_page_url)">
+          Recargar
+        </button>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactModal">
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de resultados -->
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -12,7 +33,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of resultObject.data; index as i">
+        <tr *ngFor="let item of resultObject.data">
           <td>{{ item.name }}</td>
           <td>{{ item.birthday }}</td>
           <td>{{ item.website }}</td>
@@ -24,7 +45,8 @@
     </table>
   </div>
 
-  <div>
+  <!-- Paginación -->
+  <div class="gap-2 d-flex">
     <button class="btn btn-warning" [disabled]="!resultObject.prev_page_url" (click)="resultObject.prev_page_url ? loadPage(resultObject.prev_page_url) : null">
       Anterior
     </button>
@@ -33,3 +55,4 @@
     </button>
   </div>
 </div>
+
