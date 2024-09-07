@@ -27,12 +27,11 @@ export class ContactService {
   }
 
   createContact(contact: Contact): Observable<Contact> {
-    console.log(contact);
     return this.http.post<Contact>(this.apiurl + "/contacts", contact);
   }
 
   updateContact(contact: Contact): Observable<Contact> {
-    return this.http.put<Contact>(this.apiurl + "/contact/" + contact.id, contact);
+    return this.http.put<Contact>(this.apiurl + "/contacts/" + contact.id, contact);
   }
 
   deleteContact(id: number): Observable<Contact> {

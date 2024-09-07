@@ -151,7 +151,6 @@ export class ContactFormEditComponent {
 
   // Guardar el contacto
   saveContact(): void {
-    // console.log(this.contact);
     const contactPayload = {
       id: this.contact.id,  // Asegurar que el id se envía correctamente
       name: this.contact.name,
